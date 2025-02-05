@@ -13,6 +13,10 @@ public class Truck extends Vehicle {
     public Truck(String model, String make, int year, int maxCapacity) {
         super(model, make, year);
         this.maxCapacity = maxCapacity;
-
     }
+
+
+
+
+
 }
