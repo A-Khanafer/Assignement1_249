@@ -1,6 +1,6 @@
 package clients;
 
-public class ClientManager extends Client {
+public class ClientManager {
 
     private Client[] clientManager;
 
@@ -9,30 +9,28 @@ public class ClientManager extends Client {
     }
 
 
+    public void deleteClient(String email) {
 
-    public void deleteClient(Client client, String email) {
 
-
-            for (int i = 0; i < clientManager.length; i++) {
-                if (clientManager[i].getEmail() == email){
-                    clientManager[i] = null;
-                }
-              int temp;
-                for (int k = 0; k < clientManager.length-1; k++) {
-                    if (clientManager[k+1] != null) {
-
-                    }
-                }
-
+        int index = 0;
+        Client[] temp = new Client[clientManager.length-1];
+        for(int i = 0; i < clientManager.length; i++) {
+            if (clientManager[i] != null && clientManager[i].getEmail().equals(email)) {
+                index = i;
             }
-
-
-
-
         }
 
+        int j = 0;
+        for(int i = 0; i < clientManager.length-1; i++) {
+            if(j!=index){
+                temp[i] = clientManager[j];
+            }
+            j++;
+        }
 
+        //clientManager = new ClientManager(temp);
 
     }
 
 
+}
