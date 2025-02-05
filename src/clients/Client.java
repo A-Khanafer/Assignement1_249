@@ -6,19 +6,27 @@ public class Client {
     protected String email;
     protected String phoneNumber;
     protected String address;
+    protected long clientID;
+    protected static int clientCount = 452186;
+
+
 
     public Client(String name, String email, String phoneNumber, String address) {
+        clientCount++;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.clientID = clientCount;
     }
 
     public Client(){
+        clientCount++;
         this.name = "";
         this.email = "";
         this.phoneNumber = "";
         this.address = "";
+        clientID = clientCount;
     }
 
 
@@ -28,6 +36,7 @@ public Client(Client copy){
         this.phoneNumber = copy.phoneNumber;
         this.address = copy.address;
 }
+
 
 
 public String getName() {
@@ -46,6 +55,8 @@ public String getAddress() {
 
 
 
+
+
 public void setName(String name) {
         this.name = name;
 }
@@ -58,6 +69,8 @@ public void setPhoneNumber(String phoneNumber) {
 public void setAddress(String address) {
         this.address = address;
 }
+
+
 
 
 
