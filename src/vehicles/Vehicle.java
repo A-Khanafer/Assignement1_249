@@ -19,9 +19,11 @@ public class Vehicle {
         year = 0;
     }
 
-    public Vehicle(Vehicle vehicule){
-        this.model = vehicule.model;
-        this.make = vehicule.make;
-        this.year = vehicule.year;
+    public Vehicle(Vehicle vehicle){
+        this.model = vehicle.model;
+        this.make = vehicle.make;
+        this.year = vehicle.year;
     }
+
+
 }

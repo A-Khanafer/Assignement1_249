@@ -2,8 +2,7 @@ package vehicles;
 
 public class Truck extends Vehicle {
 
-    private double maxCapacity;
-    private static int numberOfTrucks = 1000;
+    protected double maxCapacity;
 
     public Truck() {
         super();
@@ -14,6 +13,12 @@ public class Truck extends Vehicle {
         super(model, make, year);
         this.maxCapacity = maxCapacity;
     }
+
+    public Truck(Truck truck) {
+        super(truck);
+        this.maxCapacity = maxCapacity;
+    }
+
 
 
 
