@@ -6,6 +6,7 @@ public class Client {
     protected String email;
     private String phoneNumber;
     private String address;
+    protected static int clientCount;
 
 
 
@@ -16,7 +17,7 @@ public class Client {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-
+clientCount++;
     }
 
     public Client(){
@@ -24,6 +25,7 @@ public class Client {
         this.email = "";
         this.phoneNumber = "";
         this.address = "";
+        clientCount++;
 
     }
 
