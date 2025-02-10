@@ -68,20 +68,30 @@ public void editClient(String email, String input, int choice) {
                 index = i;
                 break;
             }
-         switch (choice){
-                case 1:
-                    clientManager[index].setName(input);
-                    break;
+            if (index > -1) {
+                switch (choice) {
+                    case 1:
+                        clientManager[index].setName(input);
+                        System.out.println("Client name has been updated.");
+                        break;
                     case 2:
                         clientManager[index].setEmail(input);
+                        System.out.println("Client email has been updated.");
                         break;
-                        case 3:
-                            clientManager[index].setAddress(input);
-                            break;
-                            case 4:
-                                clientManager[index].setPhoneNumber(input);
-                                break;
-         }
+                    case 3:
+                        clientManager[index].setAddress(input);
+                        System.out.println("Client address has been updated.");
+                        break;
+                    case 4:
+                        clientManager[index].setPhoneNumber(input);
+                        System.out.println("Client phone number has been updated.");
+                        break;
+                    default:
+                        System.out.println("No modification has been made.");
+                        break;
+                }
+            }
+            else System.out.println("Client with email \"" +email+  "\" does not exist");
 
 
         }
