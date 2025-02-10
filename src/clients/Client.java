@@ -6,7 +6,7 @@ public class Client {
     protected String email;
     private String phoneNumber;
     private String address;
-    protected static int registeredClients = 0;
+
 
 
 
@@ -16,7 +16,7 @@ public class Client {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        registeredClients++;
+
     }
 
     public Client(){
@@ -50,9 +50,7 @@ public String getPhoneNumber() {
 public String getAddress() {
         return address;
 }
-public int getRegisteredClients() {
-        return registeredClients;
-}
+
 
 
 

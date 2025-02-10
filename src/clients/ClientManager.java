@@ -39,7 +39,7 @@ public class ClientManager {
 
 
             System.out.println("Client email: " + email + " has been deleted.");
-            Client.registeredClients--;
+
         }
         else {
             System.out.println("Client with email \"" +email+  "\" does not exist");
