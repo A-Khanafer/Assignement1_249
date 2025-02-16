@@ -9,19 +9,19 @@ public class ClientManager extends Client {
     }
 
     public void addClient(String name, String email, String phoneNumber, String address) {
-        int index = -1;
-        for (int i = 0; i < clientManager.length; i++) {
+    boolean found = false;
+        for (int i = 0; i < Client.clientCount; i++) {
             if (clientManager[i]!=null && clientManager[i].getEmail().equals(email)) {
-                index = i;
+                found = true;
+                System.out.println("Client email already in use");
                 break;
             }
-            if (index > -1) {
-                System.out.println("Client email already in use");
-            }
-            else {
-                clientManager[Client.clientCount] = new Client(name, email, phoneNumber, address);
-            }
+
         }
+       if (!found) {
+           clientManager[Client.clientCount] = new Client(name, email, phoneNumber, address);
+           System.out.println("Client added");
+       }
 
     }
 
@@ -59,9 +59,6 @@ public class ClientManager extends Client {
         else {
             System.out.println("Client with email \"" +email+  "\" does not exist");
         }
-
-
-
 
 
         }
