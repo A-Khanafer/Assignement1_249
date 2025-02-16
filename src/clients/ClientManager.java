@@ -10,18 +10,18 @@ public class ClientManager extends Client {
 
     public void addClient(String name, String email, String phoneNumber, String address) {
         int index = -1;
-       for (int i = 0; i < clientManager.length; i++) {
-           if (clientManager[i]!=null && clientManager[i].getEmail().equals(email)) {
-               index = i;
-               break;
-           }
-           if (index > -1) {
-               System.out.println("Client email already in use");
-           }
-           else {
-               clientManager[Client.clientCount] = new Client(name, email, phoneNumber, address);
-           }
-       }
+        for (int i = 0; i < clientManager.length; i++) {
+            if (clientManager[i]!=null && clientManager[i].getEmail().equals(email)) {
+                index = i;
+                break;
+            }
+            if (index > -1) {
+                System.out.println("Client email already in use");
+            }
+            else {
+                clientManager[Client.clientCount] = new Client(name, email, phoneNumber, address);
+            }
+        }
 
     }
 
