@@ -28,7 +28,7 @@ public class ClientManager extends Client {
 
     public void deleteClient(String email) {
         int index = -1;
-        for (int i = 0; i < clientManager.length; i++) {
+        for (int i = 0; i < Client.clientCount; i++) {
             if (clientManager[i]!=null && clientManager[i].getEmail().equals(email)) {
                 index = i;
                 break;
@@ -42,12 +42,12 @@ public class ClientManager extends Client {
             for (int k = 0; k < index; k++) {
                 temp[k] = clientManager[k];
             }
-            for (int j = index; j < clientManager.length-1; j++) {
+            for (int j = index; j < Client.clientCount; j++) {
                 temp[j] = clientManager[j+1];
             }
-            temp[clientManager.length-1] = null;
 
-            for (int e = index+1; e < clientManager.length; e++) {
+
+            for (int e = index+1; e < Client.clientCount; e++) {
                 clientManager[e] = temp[e];
             }
             temp = null;
