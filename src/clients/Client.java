@@ -9,7 +9,7 @@ public class Client {
     private String phoneNumber;
     private String address;
 
-    LeasingManager[] leaseList = new LeasingManager[3];
+    private LeasingManager[] leaseList = new LeasingManager[3];
 
 
 
