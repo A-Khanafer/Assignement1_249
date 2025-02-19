@@ -76,6 +76,15 @@ public void setAddress(String address) {
         this.address = address;
 }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 
     @Override
     public boolean equals(Object obj) {
