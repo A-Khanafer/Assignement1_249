@@ -66,11 +66,12 @@ public class ClientManager extends Client {
 
 public void editClient(String email, String input, int choice) {
         int index = -1;
-        for (int i = 0; i < clientManager.length; i++) {
-            if (clientManager[i]!=null && clientManager[i].getEmail().equals(email)) {
+        for (int i = 0; i < Client.clientCount; i++) {
+            if (clientManager[i] != null && clientManager[i].getEmail().equals(email)) {
                 index = i;
                 break;
             }
+        }
             if (index > -1) {
                 switch (choice) {
                     case 1:
@@ -97,7 +98,7 @@ public void editClient(String email, String input, int choice) {
             else System.out.println("Client with email \"" +email+  "\" does not exist");
 
 
-        }
+
         }
 
 
