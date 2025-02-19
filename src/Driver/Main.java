@@ -6,17 +6,28 @@
 
 package Driver;
 
+import clients.Client;
+import clients.ClientManager;
 import vehicles.DieselTruck;
 import vehicles.ElectricTruck;
+
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
+
+        String clientPhone;
+        String clientName;
+        String clientAddress;
+        String clientEmail;
+
+        ClientManager cm = new ClientManager();
+        Scanner read = new Scanner(System.in);
         System.out.println("Welcome to Unilla Car Lease Services, by Khanafer and Cherkawi!");
         boolean quit = false;
         int choice = 0;
+        int subchoice = 0;
         while (!quit) {
             System.out.println("\nEnter your choice\n");
             System.out.println("Vehicle Management:");
@@ -51,9 +62,52 @@ public class Main {
                     break;
                 case 4:
                     break;
+
                 case 5:
-                    break;
+                    System.out.println("\nTo cancel the operation, press 1, to continue, press 5\n");
+                        read.nextLine();
+                        subchoice = read.nextInt();
+
+                        if(subchoice == 1){break;}
+
+                        if(subchoice == 5){
+                    System.out.print("Enter client name: ");
+                         clientName = read.nextLine();
+
+                    System.out.println("Enter client email: ");
+                         clientEmail = read.nextLine();
+
+                    System.out.print("Enter client phone number: ");
+                         clientPhone = read.nextLine();
+
+                    System.out.print("Enter client address: ");
+                         clientAddress = read.nextLine();
+
+                    addClient(cm, clientName, clientEmail, clientPhone, clientAddress);
+                    break;}
+
                 case 6:
+                    System.out.println("\nTo cancel the operation, press 1, to continue, press 6\n");
+                    read.nextLine();
+                            subchoice = read.nextInt();
+                            if(subchoice == 1){break;}
+                            if(subchoice == 6){
+                    System.out.print("Enter client name: ");
+                     clientName = read.nextLine();
+
+                    System.out.println("Enter client email: ");
+                     clientEmail = read.nextLine();
+
+                    System.out.print("Enter client phone number: ");
+                     clientPhone = read.nextLine();
+
+                    System.out.print("Enter client address: ");
+                     clientAddress = read.nextLine();
+
+                    deleteClient(cm, clientName, clientEmail, clientPhone, clientAddress);
+
+                            }
+
                     break;
                 case 7:
                     break;
@@ -107,8 +161,13 @@ public class Main {
         return copiedElec;
     }
 
-    private void addClient(){
 
+    private static void addClient(ClientManager cm, String name, String email, String phoneNumber, String address) {
+        cm.addClient(name,email,phoneNumber,address);
+    }
+
+    private static void deleteClient(ClientManager cm, String name, String email, String phoneNumber, String address) {
+        cm.deleteClient(name,email,phoneNumber,address);
     }
 
 }
