@@ -1,7 +1,5 @@
 package clients;
 
-import java.util.Arrays;
-
 public class ClientManager{
 
     private Client[] clientManager;
@@ -17,7 +15,6 @@ public class ClientManager{
         clientManager = new Client[0];
         clientCount = 0;
     }
-
 
     public void addClient(String name, String email, String phoneNumber, String address) {
         boolean found = false;
@@ -66,7 +63,6 @@ public class ClientManager{
             System.out.println("Client added");
         }
     }
-
 
     public void deleteClient(String name, String email, String phoneNumber, String address) {
         int index = -1;
@@ -168,4 +164,22 @@ public class ClientManager{
         s += clientCount;
         return s;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ClientManager that = (ClientManager) o;
+        boolean equals = true;
+
+        for (int i = 0; i < clientCount; i++) {
+            equals = clientManager[i].equals(that.clientManager[i]);
+            if (!equals) {
+                return false;
+            }
+        }
+        return equals;
+    }
+
+
 }
