@@ -19,6 +19,13 @@ public class Truck extends Vehicle {
         this.maxCapacity = maxCapacity;
     }
 
+    public double getMaxCapacity() {
+        return maxCapacity;
+    }
+    public void setMaxCapacity(double maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
 
 
 

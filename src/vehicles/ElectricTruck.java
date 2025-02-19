@@ -23,6 +23,14 @@ public class ElectricTruck extends Truck {
         generatePlate();
     }
 
+    public double getRange() {
+        return range;
+    }
+    public void setRange(double range) {
+        this.range = range;
+    }
+
+
 
     private void generatePlate(){
         plateNumber = "ET" + ++numberOfElectricTrucks;
