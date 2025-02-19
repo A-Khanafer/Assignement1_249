@@ -1,9 +1,10 @@
 package clients;
-//pushed
+
 public class ClientManager extends Client {
 
     private Client[] clientManager;
 
+    //ask the user, before launching the program to input how many clients MAXIMUM their system will take.
     public ClientManager(int numClients) {
         clientManager = new Client[numClients];
     }
