@@ -73,7 +73,7 @@ public class Main {
                                                                         quit = true;
                                                                         break;
                                                                         default:
-                                                                            System.out.println("\nInvalid choice\n");
+                                                                            System.out.println("\nInvalid choice");
                                                                             break;
 
             }
