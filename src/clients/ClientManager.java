@@ -1,6 +1,6 @@
 package clients;
 
-public class ClientManager extends Client {
+public class ClientManager {
 
     private Client[] clientManager;
 
