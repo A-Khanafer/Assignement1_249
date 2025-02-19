@@ -11,6 +11,8 @@ public class ClientManager{
         clientCount = numClients;
     }
 
+
+
     public ClientManager() {
         clientManager = new Client[0];
         clientCount = 0;
@@ -39,6 +41,8 @@ public class ClientManager{
            System.out.println("Client added");
         }
     }
+
+
 
     public void addClient(Client client) {
         boolean found = false;
@@ -131,27 +135,29 @@ public class ClientManager{
             }
         }
         if (index > -1) {
-            switch (choice) {
-                case 1:
-                    clientManager[index].setName(input);
-                    System.out.println("Client name has been updated.");
-                    break;
-                case 2:
-                    clientManager[index].setEmail(input);
-                    System.out.println("Client email has been updated.");
-                    break;
-                case 3:
-                    clientManager[index].setAddress(input);
-                    System.out.println("Client address has been updated.");
-                    break;
-                case 4:
-                    clientManager[index].setPhoneNumber(input);
-                    System.out.println("Client phone number has been updated.");
-                    break;
-                default:
-                    System.out.println("No modification has been made.");
-                    break;
-                    }
+
+                switch (choice) {
+                    case 1:
+                        clientManager[index].setName(input);
+                        System.out.println("Client name has been updated.");
+                        break;
+                    case 2:
+                        clientManager[index].setEmail(input);
+                        System.out.println("Client email has been updated.");
+                        break;
+                    case 3:
+                        clientManager[index].setAddress(input);
+                        System.out.println("Client address has been updated.");
+                        break;
+                    case 4:
+                        clientManager[index].setPhoneNumber(input);
+                        System.out.println("Client phone number has been updated.");
+                        break;
+                    default:
+                        System.out.println("No modification has been made.");
+                        break;
+
+            }
         } else System.out.println("Client {" + client + "} does not exist.");
     }
 
@@ -179,6 +185,10 @@ public class ClientManager{
             }
         }
         return equals;
+    }
+
+    public int getClientCount() {
+        return clientCount;
     }
 
 

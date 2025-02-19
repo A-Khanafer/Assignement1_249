@@ -15,6 +15,8 @@ import vehicles.ElectricTruck;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner read = new Scanner(System.in);
+    static ClientManager cm = new ClientManager();
     public static void main(String[] args) {
 
         String clientPhone;
@@ -22,8 +24,8 @@ public class Main {
         String clientAddress;
         String clientEmail;
 
-        ClientManager cm = new ClientManager();
-        Scanner read = new Scanner(System.in);
+
+
         System.out.println("Welcome to Unilla Car Lease Services, by Khanafer and Cherkawi!");
         boolean quit = false;
         int choice = 0;
@@ -64,52 +66,16 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("\nTo cancel the operation, press 1, to continue, press 5\n");
-                        read.nextLine();
-                        subchoice = read.nextInt();
-
-                        if(subchoice == 1){break;}
-
-                        if(subchoice == 5){
-                    System.out.print("Enter client name: ");
-                         clientName = read.nextLine();
-
-                    System.out.println("Enter client email: ");
-                         clientEmail = read.nextLine();
-
-                    System.out.print("Enter client phone number: ");
-                         clientPhone = read.nextLine();
-
-                    System.out.print("Enter client address: ");
-                         clientAddress = read.nextLine();
-
-                    addClient(cm, clientName, clientEmail, clientPhone, clientAddress);
-                    break;}
+                    addClient();
+                    break;
 
                 case 6:
-                    System.out.println("\nTo cancel the operation, press 1, to continue, press 6\n");
-                    read.nextLine();
-                            subchoice = read.nextInt();
-                            if(subchoice == 1){break;}
-                            if(subchoice == 6){
-                    System.out.print("Enter client name: ");
-                     clientName = read.nextLine();
 
-                    System.out.println("Enter client email: ");
-                     clientEmail = read.nextLine();
 
-                    System.out.print("Enter client phone number: ");
-                     clientPhone = read.nextLine();
-
-                    System.out.print("Enter client address: ");
-                     clientAddress = read.nextLine();
-
-                    deleteClient(cm, clientName, clientEmail, clientPhone, clientAddress);
-
-                            }
 
                     break;
                 case 7:
+
                     break;
                 case 8:
                     break;
@@ -162,12 +128,93 @@ public class Main {
     }
 
 
-    private static void addClient(ClientManager cm, String name, String email, String phoneNumber, String address) {
-        cm.addClient(name,email,phoneNumber,address);
+    private static void addClient(){
+
+        read.nextLine();
+
+
+
+            System.out.print("Enter client name: ");
+            String clientName = read.nextLine();
+
+            System.out.println("Enter client email: ");
+            String clientEmail = read.nextLine();
+
+            System.out.print("Enter client phone number: ");
+            String clientPhone = read.nextLine();
+
+            System.out.print("Enter client address: ");
+            String clientAddress = read.nextLine();
+
+            Client t = new Client(clientName, clientEmail, clientPhone, clientAddress);
+        cm.addClient(t);
     }
 
-    private static void deleteClient(ClientManager cm, String name, String email, String phoneNumber, String address) {
-        cm.deleteClient(name,email,phoneNumber,address);
+
+    private static void deleteClient(){
+
+        read.nextLine();
+
+        System.out.print("Enter client name: ");
+        String clientName = read.nextLine();
+
+        System.out.println("Enter client email: ");
+        String clientEmail = read.nextLine();
+
+        System.out.print("Enter client phone number: ");
+        String clientPhone = read.nextLine();
+
+        System.out.print("Enter client address: ");
+        String clientAddress = read.nextLine();
+
+        Client t = new Client(clientName, clientEmail, clientPhone, clientAddress);
+        cm.deleteClient(t);
+
+    }
+
+    private static void editClient(){
+        String input ="";
+        read.nextLine();
+        System.out.print("Enter client name: ");
+        String clientName = read.nextLine();
+        System.out.print("Enter client email: ");
+        String clientEmail = read.nextLine();
+        System.out.print("Enter client phone number: ");
+        String clientPhone = read.nextLine();
+        System.out.print("Enter client address: ");
+        String clientAddress = read.nextLine();
+        Client t = new Client(clientName, clientEmail, clientPhone, clientAddress);
+        System.out.println("\nWhat do you want to edit?");
+        System.out.println("1. Client name");
+        System.out.println("2. Client email");
+        System.out.println("3. Client phone number");
+        System.out.println("4. Client address");
+       int subchoice = read.nextInt();
+
+       switch(subchoice){
+           case 1:
+               System.out.print("Enter new client name: ");
+               input = read.nextLine();
+               break;
+               case 2:
+                   System.out.print("Enter new client email: ");
+                   input = read.nextLine();
+                   break;
+                   case 3:
+                       System.out.print("Enter new client phone number: ");
+                       input = read.nextLine();
+                       break;
+                       case 4:
+                           System.out.print("Enter new client address: ");
+                           input = read.nextLine();
+                           break;
+                           default:
+                               break;
+       }
+
+
+
+        cm.editClient(t, input, subchoice);
     }
 
 }
