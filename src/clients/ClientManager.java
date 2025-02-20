@@ -172,6 +172,8 @@ public class ClientManager{
         ClientManager that = (ClientManager) o;
         boolean equals = true;
 
+        if (clientCount != that.clientCount) return false;
+
         for (int i = 0; i < clientCount; i++) {
             equals = clientManager[i].equals(that.clientManager[i]);
             if (!equals) {

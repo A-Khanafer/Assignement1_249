@@ -26,7 +26,15 @@ public class Truck extends Vehicle {
         this.maxCapacity = maxCapacity;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " " + maxCapacity;
+    }
 
-
-
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return super.equals(truck) && maxCapacity == truck.maxCapacity;
+    }
 }

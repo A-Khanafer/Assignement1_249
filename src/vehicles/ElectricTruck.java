@@ -29,10 +29,20 @@ public class ElectricTruck extends Truck {
     public void setRange(double range) {
         this.range = range;
     }
-
-
-
     private void generatePlate(){
         plateNumber = "ET" + ++numberOfElectricTrucks;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + range ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ElectricTruck electricTruck = (ElectricTruck) o;
+        return super.equals(electricTruck) && range == electricTruck.range;
+    }
+
 }

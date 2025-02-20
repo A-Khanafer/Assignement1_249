@@ -19,8 +19,28 @@ public class Car extends Vehicle {
         maxPassengers= car.maxPassengers;
     }
 
+    public int getMaxPassengers() {
+        return maxPassengers;
+    }
+
+    public void setMaxPassengers(int maxPassengers) {
+        this.maxPassengers = maxPassengers;
+    }
+
     private void generatePlate(){
         plateNumber = "GC" + ++numberOfGasolineCars;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + maxPassengers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return super.equals(car) && maxPassengers == car.maxPassengers;
     }
 
 }
