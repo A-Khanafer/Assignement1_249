@@ -12,11 +12,6 @@ public class Client {
     private LeasingManager[] leaseList = new LeasingManager[3];
 
 
-
-
-
-
-
     public Client(String name, String email, String phoneNumber, String address) {
         this.name = name;
         this.email = email;
