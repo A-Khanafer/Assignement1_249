@@ -97,6 +97,7 @@ public class Client {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
+                "Leased Vehicles=" + leasingList +
                 '}';
     }
 

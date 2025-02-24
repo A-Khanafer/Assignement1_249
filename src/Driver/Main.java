@@ -80,10 +80,6 @@ public class Main {
             }
         }
         System.out.println("Goodbye!");
-
-
-
-
     }
 
     public static DieselTruck getLargestTruck(DieselTruck[] trucks) {

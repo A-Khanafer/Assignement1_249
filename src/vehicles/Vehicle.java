@@ -8,23 +8,27 @@ public class Vehicle {
     protected String model;
     protected String make;
     protected int year;
+    protected boolean leased = false;
 
-    public Vehicle(String model, String make, int year) {
+    public Vehicle(String model, String make, int year, boolean leased) {
         this.model = model;
         this.make = make;
         this.year = year;
+        this.leased = leased;
     }
 
     public Vehicle() {
         model = "";
         make = "";
         year = 0;
+        leased = false;
     }
 
     public Vehicle(Vehicle vehicle){
         this.model = vehicle.model;
         this.make = vehicle.make;
         this.year = vehicle.year;
+        this.leased = vehicle.leased;
     }
 
     @Override
@@ -71,5 +75,13 @@ public class Vehicle {
 
     public String getPlateNumber() {
         return plateNumber;
+    }
+
+    public boolean isLeased() {
+        return leased;
+    }
+
+    public void setLeased(boolean leased) {
+        this.leased = leased;
     }
 }

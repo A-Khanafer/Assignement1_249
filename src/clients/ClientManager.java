@@ -1,21 +1,26 @@
 package clients;
 
 import vehicles.LeasingList;
+import vehicles.Vehicle;
+import vehicles.VehicleManagement;
 
 public class ClientManager{
 
     private Client[] clientManager;
     private int clientCount;
+    private VehicleManagement vehicleData;
 
     //ask the user, before launching the program to input how many clients MAXIMUM their system will take.
-    public ClientManager(int numClients) {
+    public ClientManager(int numClients,VehicleManagement vehicleData) {
         clientManager = new Client[numClients];
         clientCount = numClients;
+        this.vehicleData = new VehicleManagement(vehicleData);
     }
 
     public ClientManager() {
         clientManager = new Client[0];
         clientCount = 0;
+        vehicleData = new VehicleManagement();
     }
 
     public void addClient(String name, String email, String phoneNumber, String address , LeasingList leasingList) {
@@ -163,6 +168,35 @@ public class ClientManager{
         String output = "";
 
     }
+
+    public void addLeasedVehicle(Client client , Vehicle vehicle) {
+        boolean found = false;
+        for(Vehicle v : vehicleData.getVehiclesManager()){
+            if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && !v.isLeased()) {
+                client.addVehicle(vehicle);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Vehicle " + vehicle.getPlateNumber() + " does not exist or is already leased.");
+        }
+    }
+
+    public void returnLeasedVehicle(Client client, Vehicle vehicle) {
+        boolean found = false;
+        for(Vehicle v : vehicleData.getVehiclesManager()){
+            if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && v.isLeased()) {
+                client.returnVehicle(vehicle);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Vehicle " + vehicle.getPlateNumber() + " does not exist or is not leased.");
+        }
+    }
+
 
     @Override
     public String toString() {
