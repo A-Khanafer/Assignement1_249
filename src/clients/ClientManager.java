@@ -1,5 +1,7 @@
 package clients;
 
+import vehicles.LeasingList;
+
 public class ClientManager{
 
     private Client[] clientManager;
@@ -11,17 +13,15 @@ public class ClientManager{
         clientCount = numClients;
     }
 
-
-
     public ClientManager() {
         clientManager = new Client[0];
         clientCount = 0;
     }
 
-    public void addClient(String name, String email, String phoneNumber, String address) {
+    public void addClient(String name, String email, String phoneNumber, String address , LeasingList leasingList) {
         boolean found = false;
         for (int i = 0; i < clientCount; i++) {
-            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address))) {
+            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address, leasingList))) {
                 found = true;
                 System.out.println("Client already in Database.");
                 break;
@@ -36,13 +36,11 @@ public class ClientManager{
                    temp[i] = new Client(clientManager[i]);
 
            }
-           temp[clientCount-1] = new Client(name, email, phoneNumber, address);
+           temp[clientCount-1] = new Client(name, email, phoneNumber, address, leasingList);
            clientManager = temp;
            System.out.println("Client added");
         }
     }
-
-
 
     public void addClient(Client client) {
         boolean found = false;
@@ -68,11 +66,11 @@ public class ClientManager{
         }
     }
 
-    public void deleteClient(String name, String email, String phoneNumber, String address) {
+    public void deleteClient(String name, String email, String phoneNumber, String address, LeasingList leasingList) {
         int index = -1;
         for (int i = 0; i < clientCount; i++) {
 
-            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address))) {
+            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address,leasingList))) {
                 index = i;
                 break;
             }
@@ -159,6 +157,11 @@ public class ClientManager{
 
             }
         } else System.out.println("Client {" + client + "} does not exist.");
+    }
+
+    public void showAllLeasedVehicles(){
+        String output = "";
+
     }
 
     @Override

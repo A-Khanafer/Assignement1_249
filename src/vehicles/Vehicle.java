@@ -37,7 +37,6 @@ public class Vehicle {
         if (o == null || getClass() != o.getClass()) return false;
         Vehicle vehicle = (Vehicle) o;
         return year == vehicle.year
-                && plateNumber.equals(vehicle.plateNumber)
                 && model.equals(vehicle.model)
                 && make.equals(vehicle.make);
     }

@@ -8,10 +8,17 @@ public class VehicleManagement {
         vehiclesManager = new Vehicle[0];
     }
 
+    public VehicleManagement(Vehicle[] vehiclesManager) {
+        this.vehiclesManager = new Vehicle[vehiclesManager.length];
+        for (int i = 0; i < vehiclesManager.length; i++) {
+            this.vehiclesManager[i] = vehicleTypeCreator(vehiclesManager[i]);
+        }
+    }
+
     public VehicleManagement(VehicleManagement vehicleManagement) {
         this.vehiclesManager = new Vehicle[vehicleManagement.vehiclesManager.length];
         for (int i = 0; i < vehicleManagement.vehiclesManager.length; i++) {
-            this.vehiclesManager[i] = vehicleManagement.vehiclesManager[i];
+            this.vehiclesManager[i] = vehicleTypeCreator(vehicleManagement.vehiclesManager[i]);
         }
     }
 
@@ -74,6 +81,14 @@ public class VehicleManagement {
             }
         }
         editVehicleInputs(input, choice, index);
+    }
+
+    public Vehicle[] getVehiclesManager() {
+        return new VehicleManagement(this).vehiclesManager;
+    }
+
+    public void setVehiclesManager(Vehicle[] vehiclesManager) {
+        this.vehiclesManager = new VehicleManagement(this).vehiclesManager;
     }
 
     @Override
