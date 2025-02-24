@@ -173,36 +173,55 @@ public class ClientManager{
 
     }
 
-    public void addLeasedVehicle(Client client , Vehicle vehicle) {
-        boolean found = false;
-        for(Vehicle v : vehicleData.getVehiclesManager()){
-            if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && !v.isLeased()) {
-                client.addVehicle(v);
-                v.setLeased(true);
-                found = true;
+    public void addLeasedVehicle(Client client , String plateNumber) {
+        int index = -1;
+        for (int i = 0; i < clientCount; i++) {
+            if (clientManager[i]!=null && clientManager[i].equals(client)) {
+                index = i;
+                System.out.println("Client already in Database.");
                 break;
             }
         }
-        if (!found) {
-            System.out.println("Vehicle " + vehicle.getPlateNumber() + " does not exist or is already leased.");
-        }
+        boolean found = false;
+        if(index>-1){
+            for(Vehicle v : vehicleData.getVehiclesManager()){
+                if(v.getPlateNumber().equals(plateNumber) && !v.isLeased()) {
+                    client.addVehicle(v);
+                    v.setLeased(true);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Vehicle " + plateNumber + " does not exist or is already leased.");
+            }
+        }else System.out.println("Client {" + client + "} does not exist.");
     }
 
-    public void returnLeasedVehicle(Client client, Vehicle vehicle) {
-        boolean found = false;
-        for(Vehicle v : vehicleData.getVehiclesManager()){
-            if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && v.isLeased()) {
-                client.returnVehicle(v);
-                v.setLeased(false);
-                found = true;
+    public void returnLeasedVehicle(Client client, String plateNumber) {
+        int index = -1;
+        for (int i = 0; i < clientCount; i++) {
+            if (clientManager[i]!=null && clientManager[i].equals(client)) {
+                index = i;
+                System.out.println("Client already in Database.");
                 break;
             }
         }
-        if (!found) {
-            System.out.println("Vehicle " + vehicle.getPlateNumber() + " does not exist or is not leased.");
-        }
+        boolean found = false;
+        if(index>-1){
+            for(Vehicle v : vehicleData.getVehiclesManager()){
+                if(v.getPlateNumber().equals(plateNumber) && v.isLeased()) {
+                    clientManager[index].returnVehicle(v);
+                    v.setLeased(false);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Vehicle " + plateNumber + " does not exist or is not leased.");
+            }
+        }else System.out.println("Client {" + client + "} does not exist.");
     }
-
 
     @Override
     public String toString() {
@@ -235,7 +254,6 @@ public class ClientManager{
     public int getClientCount() {
         return clientCount;
     }
-
 
     public void setVehicleData(VehicleManagement vm) {
         vehicleData = vm;
