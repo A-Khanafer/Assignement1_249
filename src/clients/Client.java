@@ -37,6 +37,14 @@ public class Client {
         this.leasingList = new LeasingList(copy.leasingList);
     }
 
+    public Client(String clientName, String clientEmail, String clientPhone, String clientAddress) {
+        this.name = clientName;
+        this.email = clientEmail;
+        this.phoneNumber = clientPhone;
+        this.address = clientAddress;
+        this.leasingList = new LeasingList();
+    }
+
     public String getName() {
             return name;
     }

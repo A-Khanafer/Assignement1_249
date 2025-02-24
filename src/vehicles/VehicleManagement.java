@@ -166,7 +166,7 @@ public class VehicleManagement {
                 break;
             case 5:
                 electricTruck.setMaxCapacity(Double.parseDouble(input));
-                System.out.println("Vehicle range updated");
+                System.out.println("Vehicle capacity updated");
                 break;
             case 6:
                 electricTruck.setRange(Double.parseDouble(input));

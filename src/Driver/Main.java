@@ -8,8 +8,7 @@ package Driver;
 
 import clients.Client;
 import clients.ClientManager;
-import vehicles.DieselTruck;
-import vehicles.ElectricTruck;
+import vehicles.*;
 
 
 import java.util.Scanner;
@@ -17,6 +16,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner read = new Scanner(System.in);
     static ClientManager cm = new ClientManager();
+    static VehicleManagement vm = new VehicleManagement();
     public static void main(String[] args) {
 
         String clientPhone;
@@ -34,12 +34,16 @@ public class Main {
 
             switch(choice){
                 case 1:
+                    addVehicle();
                     break;
                 case 2:
+                    deleteVehicle();
                     break;
                 case 3:
+                    editClient();
                     break;
                 case 4:
+                    System.out.println(vm);
                     break;
 
                 case 5:
@@ -218,6 +222,118 @@ public class Main {
         System.out.println("13. Create a copy of the electric trucks array");
 
         System.out.println("\n0. Exit");
+    }
+
+    private static void editVehicle(){
+        System.out.print("\nEnter the type of vehicle (GC , DT, EC or ET): ");
+        String vehicleType = read.nextLine().toUpperCase();
+
+        System.out.println("1. Edit vehicle vehicle make: ");
+        System.out.println("2. Edit vehicle vehicle model: ");
+        System.out.println("3. Edit vehicle year: ");
+        System.out.println("4. Edit vehicle plate number: ");
+
+        switch(vehicleType){
+            case "GC":
+
+                System.out.println("5. Edit vehicle maximum passengers: ");
+
+                break;
+
+            case "DT":
+
+                System.out.println("5. Edit vehicle maximum capacity: ");
+                System.out.println("6. Edit vehicle tank capacity: ");
+                break;
+
+            case "EC":
+
+                System.out.println("5. Edit vehicle maximum passengers: ");
+                System.out.println("6. Edit vehicle range: ");
+                break;
+
+                case "ET":
+
+                    System.out.println("5. Edit vehicle maximum capacity: ");
+                    System.out.println("6. Edit vehicle range: ");
+
+        }
+        System.out.print("\nEnter your choice: ");
+        int subchoice = read.nextInt();
+        System.out.println("\nEnter plate number: ");
+        String plate = read.nextLine();
+        System.out.println("\n Enter the new information that you want to edit: ");
+        String information = read.nextLine();
+       vm.editVehicle(plate, information, subchoice);
+
+
+    }
+
+    private static void deleteVehicle(){
+        System.out.println("\nEnter vehicle plate number to delete (enter 0 to exit): ");
+        String plate = read.nextLine();
+        if (plate.equals("0")) {
+
+        }
+        else {
+            vm.deleteVehicle(plate);
+        }
+
+    }
+
+    private static void addVehicle(){
+        int passengers;
+        int range;
+        int capacity;
+        double tankCapacity;
+        System.out.println("\nEnter the type of vehicle: ");
+        System.out.println("1. Gas car");
+        System.out.println("2. Electric car");
+        System.out.println("3. Diesel truck");
+        System.out.println("4. Electric truck");
+        int subchoice = read.nextInt();
+
+        System.out.println("\nEnter new vehicle make: ");
+        String make = read.nextLine();
+        System.out.println("Enter new vehicle model: ");
+        String model = read.nextLine();
+        System.out.println("Enter new vehicle year: ");
+        int year = read.nextInt();
+
+        switch (subchoice){
+            case 1:
+                System.out.println("Enter new vehicle maximum passengers: ");
+                passengers = read.nextInt();
+                vm.addVehicle(new Car(model, make, year, passengers));
+                break;
+                case 2:
+                    System.out.println("Enter new vehicle maximum passengers: ");
+                    passengers = read.nextInt();
+                    System.out.println("Enter new vehicle range: ");
+                    range = read.nextInt();
+                    vm.addVehicle(new ElectricCar(model, make, year, passengers, range));
+                    break;
+                    case 3:
+                        System.out.println("Enter new vehicle maximum capacity: ");
+                        capacity = read.nextInt();
+                        System.out.println("Enter new vehicle tank capacity: ");
+                        tankCapacity = read.nextInt();
+                        vm.addVehicle(new DieselTruck(model, make, year, capacity, tankCapacity));
+
+                        break;
+                        case 4:
+                            System.out.println("Enter new vehicle maximum capacity: ");
+                            capacity = read.nextInt();
+                            System.out.println("Enter new vehicle range: ");
+                            range = read.nextInt();
+
+                            vm.addVehicle(new ElectricTruck(model, make, year, capacity, range));
+                            break;
+                            default:
+                                System.out.println("\n Action canceled");
+                                break;
+        }
+
     }
 
 }
