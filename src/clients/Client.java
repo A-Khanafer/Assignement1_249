@@ -113,6 +113,9 @@ public class Client {
                 && this.address.equals(other.address);
     }
 
+    public LeasingList getLeasingList() {
+        return leasingList;
+    }
 
 
 }

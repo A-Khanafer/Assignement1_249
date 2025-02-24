@@ -110,6 +110,9 @@ public class ClientManager{
             }
         }
         if (index>-1){
+            for(Vehicle v : clientManager[index].getLeasingList().getLeasedVehiclesForAClient()){
+                v.setLeased(false);
+            }
 
             Client[] temp = new Client[--clientCount];
 
@@ -127,6 +130,7 @@ public class ClientManager{
         else {
             System.out.println("Client {" + client + "} does not exist.");
         }
+
     }
 
     public void editClient(Client client, String input, int choice) {
@@ -173,7 +177,8 @@ public class ClientManager{
         boolean found = false;
         for(Vehicle v : vehicleData.getVehiclesManager()){
             if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && !v.isLeased()) {
-                client.addVehicle(vehicle);
+                client.addVehicle(v);
+                v.setLeased(true);
                 found = true;
                 break;
             }
@@ -187,7 +192,8 @@ public class ClientManager{
         boolean found = false;
         for(Vehicle v : vehicleData.getVehiclesManager()){
             if(v.getPlateNumber().equals(vehicle.getPlateNumber()) && v.isLeased()) {
-                client.returnVehicle(vehicle);
+                client.returnVehicle(v);
+                v.setLeased(false);
                 found = true;
                 break;
             }
@@ -231,4 +237,7 @@ public class ClientManager{
     }
 
 
+    public void setVehicleData(VehicleManagement vm) {
+        vehicleData = vm;
+    }
 }

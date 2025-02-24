@@ -29,4 +29,9 @@ public class LeasingList {
     public String toString(){
         return leasedVehiclesForAClient.toString();
     }
+
+    public Vehicle[] getLeasedVehiclesForAClient() {
+        return leasedVehiclesForAClient.getVehiclesManager();
+    }
+
 }

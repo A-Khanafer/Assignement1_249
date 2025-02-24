@@ -19,6 +19,7 @@ public class Main {
     static VehicleManagement vm = new VehicleManagement();
     public static void main(String[] args) {
 
+        cm.setVehicleData(vm);
         String clientPhone;
         String clientName;
         String clientAddress;
@@ -100,7 +101,9 @@ public class Main {
 
     public ElectricTruck[] copyVehicles(ElectricTruck[] Trucks) {
         ElectricTruck[] copiedElec = new ElectricTruck[Trucks.length];
-        System.arraycopy(Trucks, 0, copiedElec, 0, Trucks.length);
+        for(int i = 0; i < Trucks.length; i++) {
+            copiedElec[i] = new ElectricTruck(Trucks[i]);
+        }
         return copiedElec;
     }
 
