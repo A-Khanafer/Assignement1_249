@@ -108,9 +108,6 @@ public class Main {
     private static void addClient(){
 
         read.nextLine();
-
-
-
             System.out.print("Enter client name: ");
             String clientName = read.nextLine();
 
