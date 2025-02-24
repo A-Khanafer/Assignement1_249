@@ -23,8 +23,27 @@ public class ElectricCar extends Car {
         generatePlate();
     }
 
+    public double getRange() {
+        return range;
+    }
+
+    public void setRange(double range) {
+        this.range = range;
+    }
+
     private void generatePlate(){
         plateNumber = "EC" + ++numberOfElectricCars;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " " + range ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ElectricCar electricCar = (ElectricCar) o;
+        return super.equals(electricCar) && range == electricCar.range;
+    }
 }

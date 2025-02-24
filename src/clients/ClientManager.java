@@ -1,5 +1,7 @@
 package clients;
 
+import vehicles.LeasingList;
+
 public class ClientManager{
 
     private Client[] clientManager;
@@ -16,10 +18,10 @@ public class ClientManager{
         clientCount = 0;
     }
 
-    public void addClient(String name, String email, String phoneNumber, String address) {
+    public void addClient(String name, String email, String phoneNumber, String address , LeasingList leasingList) {
         boolean found = false;
         for (int i = 0; i < clientCount; i++) {
-            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address))) {
+            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address, leasingList))) {
                 found = true;
                 System.out.println("Client already in Database.");
                 break;
@@ -34,7 +36,7 @@ public class ClientManager{
                    temp[i] = new Client(clientManager[i]);
 
            }
-           temp[clientCount-1] = new Client(name, email, phoneNumber, address);
+           temp[clientCount-1] = new Client(name, email, phoneNumber, address, leasingList);
            clientManager = temp;
            System.out.println("Client added");
         }
@@ -64,11 +66,11 @@ public class ClientManager{
         }
     }
 
-    public void deleteClient(String name, String email, String phoneNumber, String address) {
+    public void deleteClient(String name, String email, String phoneNumber, String address, LeasingList leasingList) {
         int index = -1;
         for (int i = 0; i < clientCount; i++) {
 
-            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address))) {
+            if (clientManager[i]!=null && clientManager[i].equals(new Client(name, email, phoneNumber, address,leasingList))) {
                 index = i;
                 break;
             }
@@ -131,28 +133,35 @@ public class ClientManager{
             }
         }
         if (index > -1) {
-            switch (choice) {
-                case 1:
-                    clientManager[index].setName(input);
-                    System.out.println("Client name has been updated.");
-                    break;
-                case 2:
-                    clientManager[index].setEmail(input);
-                    System.out.println("Client email has been updated.");
-                    break;
-                case 3:
-                    clientManager[index].setAddress(input);
-                    System.out.println("Client address has been updated.");
-                    break;
-                case 4:
-                    clientManager[index].setPhoneNumber(input);
-                    System.out.println("Client phone number has been updated.");
-                    break;
-                default:
-                    System.out.println("No modification has been made.");
-                    break;
-                    }
+
+                switch (choice) {
+                    case 1:
+                        clientManager[index].setName(input);
+                        System.out.println("Client name has been updated.");
+                        break;
+                    case 2:
+                        clientManager[index].setEmail(input);
+                        System.out.println("Client email has been updated.");
+                        break;
+                    case 3:
+                        clientManager[index].setAddress(input);
+                        System.out.println("Client address has been updated.");
+                        break;
+                    case 4:
+                        clientManager[index].setPhoneNumber(input);
+                        System.out.println("Client phone number has been updated.");
+                        break;
+                    default:
+                        System.out.println("No modification has been made.");
+                        break;
+
+            }
         } else System.out.println("Client {" + client + "} does not exist.");
+    }
+
+    public void showAllLeasedVehicles(){
+        String output = "";
+
     }
 
     @Override
@@ -172,6 +181,8 @@ public class ClientManager{
         ClientManager that = (ClientManager) o;
         boolean equals = true;
 
+        if (clientCount != that.clientCount) return false;
+
         for (int i = 0; i < clientCount; i++) {
             equals = clientManager[i].equals(that.clientManager[i]);
             if (!equals) {
@@ -179,6 +190,10 @@ public class ClientManager{
             }
         }
         return equals;
+    }
+
+    public int getClientCount() {
+        return clientCount;
     }
 
 

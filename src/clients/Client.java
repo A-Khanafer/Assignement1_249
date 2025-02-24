@@ -1,6 +1,7 @@
 package clients;
 
-import vehicles.LeasingManager;
+import vehicles.LeasingList;
+import vehicles.Vehicle;
 
 public class Client {
 
@@ -8,20 +9,14 @@ public class Client {
     protected String email;
     private String phoneNumber;
     private String address;
+    private LeasingList leasingList;
 
-    private LeasingManager[] leaseList = new LeasingManager[3];
-
-
-
-
-
-
-
-    public Client(String name, String email, String phoneNumber, String address) {
+    public Client(String name, String email, String phoneNumber, String address, LeasingList leasingList) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.leasingList = new LeasingList(leasingList);
 
     }
 
@@ -30,51 +25,62 @@ public class Client {
         this.email = "";
         this.phoneNumber = "";
         this.address = "";
-
-
+        this.leasingList = new LeasingList();
     }
 
 
-public Client(Client copy){
+    public Client(Client copy){
         this.name = copy.name;
         this.email = copy.email;
         this.phoneNumber = copy.phoneNumber;
         this.address = copy.address;
-}
+        this.leasingList = new LeasingList(copy.leasingList);
+    }
 
+    public String getName() {
+            return name;
+    }
 
+    public String getEmail() {
+            return email;
+    }
 
-public String getName() {
-        return name;
-}
+    public String getPhoneNumber() {
+            return phoneNumber;
+    }
 
-public String getEmail() {
-        return email;
-}
-public String getPhoneNumber() {
-        return phoneNumber;
-}
-public String getAddress() {
-        return address;
-}
+    public String getAddress() {
+            return address;
+    }
 
+    public void setName(String name) {
+            this.name = name;
+    }
 
+    public void setEmail(String email) {
+            this.email = email;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+    }
 
+    public void setAddress(String address) {
+            this.address = address;
+    }
 
+    public void addVehicle(Vehicle vehicle){
+        leasingList.lease(vehicle);
+    }
 
-public void setName(String name) {
-        this.name = name;
-}
-public void setEmail(String email) {
-        this.email = email;
-}
-public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-}
-public void setAddress(String address) {
-        this.address = address;
-}
+    public void returnVehicle(Vehicle vehicle){
+        leasingList.returnVehicle(vehicle);
+    }
+
+    public void showAllVehicles(){
+        System.out.println(leasingList);
+    }
+
 
     @Override
     public String toString() {
