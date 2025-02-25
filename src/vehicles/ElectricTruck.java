@@ -8,7 +8,6 @@ public class ElectricTruck extends Truck {
     public ElectricTruck() {
         super();
         range = 0;
-        generatePlate();
     }
 
     public ElectricTruck(String model, String make, int year, int maxCapacity, double range) {
@@ -20,7 +19,7 @@ public class ElectricTruck extends Truck {
     public ElectricTruck(ElectricTruck electricTruck) {
         super(electricTruck);
         this.range = electricTruck.range;
-        generatePlate();
+        this.plateNumber = electricTruck.plateNumber;
     }
 
     public double getRange() {

@@ -6,7 +6,7 @@ public class ElectricCar extends Car {
     private static int numberOfElectricCars = 1000;
 
     public ElectricCar(String model, String make, int year, int maxPassengers, double range) {
-        super(model, make, year, maxPassengers);
+        super(model, make, year, maxPassengers, false);
         this.range = range;
         generatePlate();
     }
@@ -14,13 +14,12 @@ public class ElectricCar extends Car {
     public ElectricCar(){
         super();
         range = 0;
-        generatePlate();
     }
 
     public ElectricCar(ElectricCar electricCar){
         super(electricCar);
         range = electricCar.range;
-        generatePlate();
+        this.plateNumber = electricCar.plateNumber;
     }
 
     public double getRange() {

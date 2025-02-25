@@ -227,7 +227,7 @@ read.nextLine();
 
     private static void editVehicle(){
         System.out.print("\nEnter the type of vehicle (GC , DT, EC or ET): ");
-        String vehicleType = read.nextLine().toUpperCase();
+        String vehicleType = read.next().toUpperCase();
 
         System.out.println("1. Edit vehicle vehicle make: ");
         System.out.println("2. Edit vehicle vehicle model: ");
@@ -262,10 +262,10 @@ read.nextLine();
         System.out.print("\nEnter your choice: ");
         int subchoice = read.nextInt();
         System.out.println("\nEnter plate number: ");
-        String plate = read.nextLine();
+        String plate = read.next();
         System.out.println("\n Enter the new information that you want to edit: ");
-        String information = read.nextLine();
-       vm.editVehicle(plate, information, subchoice);
+        String information = read.next();
+        vm.editVehicle(plate, information, subchoice);
 
 
     }
@@ -304,7 +304,7 @@ read.nextLine();
             case 1:
                 System.out.println("Enter new vehicle maximum passengers: ");
                 passengers = read.nextInt();
-                vm.addVehicle(new Car(model, make, year, passengers));
+                vm.addVehicle(new Car(model, make, year, passengers, true));
                 break;
                 case 2:
                     System.out.println("Enter new vehicle maximum passengers: ");
@@ -338,17 +338,17 @@ read.nextLine();
 
     private static void leaseVehicle(){
         System.out.println("\nEnter vehicle plate number to lease: ");
-        String plate = read.nextLine();
+        String plate = read.next();
 
 
             System.out.println("\nEnter client name: ");
-            String clientName = read.nextLine();
+            String clientName = read.next();
             System.out.println("Enter client address: ");
-            String clientAddress = read.nextLine();
+            String clientAddress = read.next();
             System.out.println("Enter client email: ");
-            String clientEmail = read.nextLine();
+            String clientEmail = read.next();
             System.out.println("Enter client phone: ");
-            String clientPhone = read.nextLine();
+            String clientPhone = read.next();
 
             cm.addLeasedVehicle(new Client(clientName, clientEmail, clientPhone, clientAddress), plate);
 
