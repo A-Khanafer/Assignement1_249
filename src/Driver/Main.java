@@ -138,13 +138,13 @@ public class Main {
         String clientName = read.nextLine();
 
         System.out.println("Enter client email: ");
-        String clientEmail = read.nextLine();
+        String clientEmail = read.next();
 
         System.out.print("Enter client phone number: ");
-        String clientPhone = read.nextLine();
+        String clientPhone = read.next();
 
         System.out.print("Enter client address: ");
-        String clientAddress = read.nextLine();
+        String clientAddress = read.next();
 
         Client t = new Client(clientName, clientEmail, clientPhone, clientAddress);
         cm.deleteClient(t);
@@ -169,7 +169,7 @@ public class Main {
         System.out.println("3. Client phone number");
         System.out.println("4. Client address");
        int subchoice = read.nextInt();
-
+read.nextLine();
        switch(subchoice){
            case 1:
                System.out.print("Enter new client name: ");
