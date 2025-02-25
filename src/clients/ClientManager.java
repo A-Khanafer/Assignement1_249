@@ -168,17 +168,37 @@ public class ClientManager{
         } else System.out.println("Client {" + client + "} does not exist.");
     }
 
-    public void showAllLeasedVehicles(){
-        String output = "";
 
+
+    public void showAllLeasedVehiclesByAClient(Client client){
+        int index = -1;
+        for (int i = 0; i < clientCount; i++) {
+            if (clientManager[i] != null && clientManager[i].equals(client)) {
+                index = i;
+                break;
+            }
+        }
+        if (index > -1) {
+            System.out.println(clientManager[index].showAllVehicles());
+        } else{
+            System.out.println("Client {" + client + "} does not exist.");
+        }
     }
+
+    public void showAllLeasedVehicles(){
+        for (int i = 0; i < clientCount; i++) {
+            System.out.println(clientManager[i].showAllVehicles());
+        }
+    }
+
+
+
 
     public void addLeasedVehicle(Client client , String plateNumber) {
         int index = -1;
         for (int i = 0; i < clientCount; i++) {
             if (clientManager[i]!=null && clientManager[i].equals(client)) {
                 index = i;
-                System.out.println("Client already in Database.");
                 break;
             }
         }
@@ -203,7 +223,7 @@ public class ClientManager{
         for (int i = 0; i < clientCount; i++) {
             if (clientManager[i]!=null && clientManager[i].equals(client)) {
                 index = i;
-                System.out.println("Client already in Database.");
+
                 break;
             }
         }

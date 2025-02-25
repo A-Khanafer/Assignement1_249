@@ -85,8 +85,8 @@ public class Client {
         leasingList.returnVehicle(vehicle);
     }
 
-    public void showAllVehicles(){
-        System.out.println(leasingList);
+    public String showAllVehicles(){
+        return leasingList.toString();
     }
 
 
