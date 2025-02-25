@@ -41,7 +41,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return year + " " + model + " " + make + " " + plateNumber;
+        return year + " " + model + " " + make + " " + plateNumber + " leased ? => " + leased;
     }
 
     @Override
@@ -89,7 +89,11 @@ public class Vehicle {
         return leased;
     }
 
-    public void setLeased(boolean leased) {
-        this.leased = leased;
+    public void returnVehicle() {
+        this.leased = false;
+    }
+
+    public void leaseVehicle() {
+        this.leased = true;
     }
 }
