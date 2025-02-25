@@ -15,6 +15,7 @@ public class Main {
     static Scanner read = new Scanner(System.in);
     static ClientManager cm = new ClientManager();
     static VehicleManagement vm = new VehicleManagement();
+    static DieselTruck[] dieselTrucks = new DieselTruck[0];
     public static void main(String[] args) {
 
         cm.setVehicleData(vm);
@@ -22,7 +23,6 @@ public class Main {
         String clientName;
         String clientAddress;
         String clientEmail;
-
 
 
         System.out.println("Welcome to Unilla Car Lease Services, by Khanafer and Cherkawi!\n");
@@ -73,7 +73,7 @@ public class Main {
                     getLargestTruck();
                     break;
                 case 13:
-                    copyVehicles();
+                    copyVehicles(extractElectricTruck());
                     break;
                 case 0:
                     quit = true;
@@ -86,23 +86,23 @@ public class Main {
         System.out.println("Goodbye!");
     }
 
-    public static DieselTruck getLargestTruck(DieselTruck[] trucks) {
+    public static DieselTruck getLargestTruck() {
         DieselTruck largest;
-        if (trucks == null || trucks.length == 0) {
+        if (dieselTrucks == null || dieselTrucks.length == 0) {
             largest = new DieselTruck();
         }
 
-        else{ largest = trucks[0];
-            for (int i = 1; i < trucks.length; i++) {
-                if (trucks[i].getMaxCapacity() > largest.getMaxCapacity()) {
-                    largest = trucks[i];
+        else{ largest = dieselTrucks[0];
+            for (int i = 1; i < dieselTrucks.length; i++) {
+                if (dieselTrucks[i].getMaxCapacity() > largest.getMaxCapacity()) {
+                    largest = dieselTrucks[i];
                 }
             }
         }
         return largest;
     }
 
-    public ElectricTruck[] copyVehicles(ElectricTruck[] Trucks) {
+    public static ElectricTruck[] copyVehicles(ElectricTruck[] Trucks) {
         ElectricTruck[] copiedElec = new ElectricTruck[Trucks.length];
         for(int i = 0; i < Trucks.length; i++) {
             copiedElec[i] = new ElectricTruck(Trucks[i]);
@@ -282,12 +282,10 @@ read.nextLine();
         System.out.println("3. Diesel truck");
         System.out.println("4. Electric truck");
         int subchoice = read.nextInt();
-
-        read.nextLine();
         System.out.println("\nEnter new vehicle make: ");
-        String make = read.nextLine();
+        String make = read.next();
         System.out.println("Enter new vehicle model: ");
-        String model = read.nextLine();
+        String model = read.next();
         System.out.println("Enter new vehicle year: ");
         int year = read.nextInt();
 
@@ -309,8 +307,29 @@ read.nextLine();
                         capacity = read.nextInt();
                         System.out.println("Enter new vehicle tank capacity: ");
                         tankCapacity = read.nextInt();
-                        vm.addVehicle(new DieselTruck(model, make, year, capacity, tankCapacity));
+                        DieselTruck temp = new DieselTruck(model, make, year, capacity, tankCapacity);
+                        vm.addVehicle(temp);
 
+                        boolean found = false;
+                        for (int i = 0; i < dieselTrucks.length; i++) {
+                            if (dieselTrucks[i]!=null && dieselTrucks[i].equals(temp)) {
+                                found = true;
+                                System.out.println("Diesel truck found! Not going to duplicate");
+                                break;
+                            }
+                        }
+                        if (!found) {
+                            DieselTruck[] temporaryDieselArray = new DieselTruck[dieselTrucks.length + 1];
+
+                            for(int i = 0; i < dieselTrucks.length; i++) {
+
+                                if(dieselTrucks[i]!=null)
+                                    temporaryDieselArray[i] = new DieselTruck(dieselTrucks[i]);
+                            }
+                            temporaryDieselArray[dieselTrucks.length] = new DieselTruck(temp);
+                            dieselTrucks = temporaryDieselArray;
+                            System.out.println("TRUCK DIESEL added");
+                        }
                         break;
                         case 4:
                             System.out.println("Enter new vehicle maximum capacity: ");
@@ -375,4 +394,27 @@ read.nextLine();
         cm.showAllLeasedVehiclesByAClient(new Client(clientName, clientEmail, clientPhone, clientAddress));
     }
 
+    private static ElectricTruck[] extractElectricTruck(){
+        int count = 0;
+
+        // First, count how many ElectricCar instances exist
+        for (Vehicle v : vm.getVehiclesManager()) {
+            if (v instanceof ElectricCar) {
+                count++;
+            }
+        }
+
+        // Create an array of the correct size
+        ElectricTruck[] electricTrucks = new ElectricTruck[count];
+        int index = 0;
+
+        // Populate the new array
+        for (Vehicle v : vm.getVehiclesManager()) {
+            if (v instanceof ElectricCar && v != null) {
+                electricTrucks[index++] = (ElectricTruck) v;
+            }
+        }
+
+        return electricTrucks;
+    }
 }
