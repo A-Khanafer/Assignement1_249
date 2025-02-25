@@ -9,8 +9,6 @@ package Driver;
 import clients.Client;
 import clients.ClientManager;
 import vehicles.*;
-
-
 import java.util.Scanner;
 
 public class Main {
@@ -81,7 +79,6 @@ public class Main {
                 default:
                     System.out.println("\nInvalid choice");
                     break;
-
             }
         }
         System.out.println("Goodbye!");
