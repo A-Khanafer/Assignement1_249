@@ -72,8 +72,10 @@ public class Main {
                     break;
 
                 case 12:
+                    getLargestTruck();
                     break;
                 case 13:
+                    copyVehicles();
                     break;
                 case 0:
                     quit = true;

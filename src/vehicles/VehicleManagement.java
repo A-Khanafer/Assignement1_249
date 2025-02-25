@@ -8,6 +8,7 @@ public class VehicleManagement {
         vehiclesManager = new Vehicle[0];
     }
 
+
     public VehicleManagement(Vehicle[] vehiclesManager) {
         this.vehiclesManager = new Vehicle[vehiclesManager.length];
         for (int i = 0; i < vehiclesManager.length; i++) {
@@ -278,4 +279,9 @@ public class VehicleManagement {
             case null, default -> null;
         };
     }
+
+
+
+
+
 }
