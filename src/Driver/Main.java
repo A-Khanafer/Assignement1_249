@@ -27,12 +27,12 @@ public class Main {
 
 
 
-        System.out.println("Welcome to Unilla Car Lease Services, by Khanafer and Cherkawi!");
+        System.out.println("Welcome to Unilla Car Lease Services, by Khanafer and Cherkawi!\n");
         boolean quit = false;
-        int choice = 0;
+        int choice;
         while (!quit) {
             display();
-
+                choice = read.nextInt();
             switch(choice){
                 case 1:
                     addVehicle();
@@ -41,7 +41,7 @@ public class Main {
                     deleteVehicle();
                     break;
                 case 3:
-                    editClient();
+                    editVehicle();
                     break;
                 case 4:
                     System.out.println(vm);
@@ -199,8 +199,8 @@ public class Main {
     }
 
     private static void display(){
-        System.out.println("\nEnter your choice\n");
-        System.out.println("Vehicle Management:");
+
+        System.out.println("\nVehicle Management:");
         System.out.println("1. Add a vehicle");
         System.out.println("2. Delete a vehicle");
         System.out.println("3. Update vehicle information");
@@ -222,6 +222,7 @@ public class Main {
         System.out.println("13. Create a copy of the electric trucks array");
 
         System.out.println("\n0. Exit");
+        System.out.print("\nEnter your choice: ");
     }
 
     private static void editVehicle(){
@@ -270,14 +271,12 @@ public class Main {
     }
 
     private static void deleteVehicle(){
-        System.out.println("\nEnter vehicle plate number to delete (enter 0 to exit): ");
-        String plate = read.nextLine();
-        if (plate.equals("0")) {
 
-        }
-        else {
+        System.out.println("\nEnter vehicle plate number to delete: ");
+        String plate = read.next();
+
             vm.deleteVehicle(plate);
-        }
+
 
     }
 
@@ -293,6 +292,7 @@ public class Main {
         System.out.println("4. Electric truck");
         int subchoice = read.nextInt();
 
+        read.nextLine();
         System.out.println("\nEnter new vehicle make: ");
         String make = read.nextLine();
         System.out.println("Enter new vehicle model: ");
@@ -337,12 +337,10 @@ public class Main {
     }
 
     private static void leaseVehicle(){
-        System.out.println("\nEnter vehicle plate number to lease (Enter 0 to exit): ");
+        System.out.println("\nEnter vehicle plate number to lease: ");
         String plate = read.nextLine();
-        if (plate.equals("0")) {
 
-        }
-        else {
+
             System.out.println("\nEnter client name: ");
             String clientName = read.nextLine();
             System.out.println("Enter client address: ");
@@ -355,16 +353,14 @@ public class Main {
             cm.addLeasedVehicle(new Client(clientName, clientEmail, clientPhone, clientAddress), plate);
 
             System.out.println("Vehicle " + plate + " leased.");
-        }
+
     }
 
     private static void returnVehicle(){
-        System.out.println("\nEnter vehicle plate number to return (Enter 0 to exit): ");
+        System.out.println("\nEnter vehicle plate number to return: ");
         String plate = read.nextLine();
-        if (plate.equals("0")) {
 
-        }
-        else {
+
             System.out.println("\nEnter client name: ");
             String clientName = read.nextLine();
             System.out.println("Enter client address: ");
@@ -377,7 +373,7 @@ public class Main {
             cm.returnLeasedVehicle(new Client(clientName, clientEmail, clientPhone, clientAddress), plate);
 
             System.out.println("Vehicle " + plate + " returned.");
-        }
+
     }
     private static void leasedVehicleByClient(){
         System.out.println("\n Enter client name");

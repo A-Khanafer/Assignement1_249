@@ -17,6 +17,13 @@ public class Vehicle {
         this.leased = leased;
     }
 
+    public Vehicle(String model, String make, int year) {
+        this.model = model;
+        this.make = make;
+        this.year = year;
+        this.leased = false;
+    }
+
     public Vehicle() {
         model = "";
         make = "";
