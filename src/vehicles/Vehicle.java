@@ -29,6 +29,7 @@ public class Vehicle {
         make = "";
         year = 0;
         leased = false;
+        plateNumber = "";
     }
 
     public Vehicle(Vehicle vehicle){

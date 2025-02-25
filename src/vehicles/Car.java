@@ -4,10 +4,13 @@ public class Car extends Vehicle {
 
     protected int maxPassengers;
     private static int numberOfGasolineCars = 1000;
+    protected boolean generatePlate = true;
 
-    public Car(String model, String make, int year, int maxPassengers) {
+    public Car(String model, String make, int year, int maxPassengers, boolean generatePlate) {
         super(model, make, year);
         this.maxPassengers = maxPassengers;
+        if(generatePlate)
+            generatePlate();
     }
 
     public Car(){
@@ -17,6 +20,7 @@ public class Car extends Vehicle {
     public Car(Car car){
         super(car);
         maxPassengers= car.maxPassengers;
+        this.plateNumber = car.plateNumber;
     }
 
     public int getMaxPassengers() {

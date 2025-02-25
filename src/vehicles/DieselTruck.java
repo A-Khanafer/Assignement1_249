@@ -8,7 +8,6 @@ public class DieselTruck extends Truck {
     public DieselTruck() {
         super();
         tankCapacity = 0;
-        generatePlate();
     }
 
     public DieselTruck(String model, String make, int year, int maxCapacity, double tankCapacity) {
@@ -20,7 +19,7 @@ public class DieselTruck extends Truck {
     public DieselTruck(DieselTruck dieselTruck) {
         super(dieselTruck);
         this.tankCapacity = dieselTruck.tankCapacity;
-        generatePlate();
+        this.plateNumber = dieselTruck.plateNumber;
     }
 
     public double getTankCapacity() {
