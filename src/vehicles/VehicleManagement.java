@@ -37,7 +37,7 @@ public class VehicleManagement {
             for(int i = 0; i < vehiclesManager.length; i++) {
                 if(vehiclesManager[i]!=null)
                     temp[i] = vehicleTypeCreator(vehiclesManager[i]);
-                System.out.println(temp[i]);
+
             }
             temp[vehiclesManager.length] = vehicleTypeCreator(vehicle);
             vehiclesManager = temp;
