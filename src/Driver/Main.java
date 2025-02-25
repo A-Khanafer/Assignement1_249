@@ -70,7 +70,7 @@ public class Main {
                     cm.showAllLeasedVehicles();
                     break;
                 case 12:
-                    getLargestTruck();
+                    System.out.println(getLargestTruck());
                     break;
                 case 13:
                     copyVehicles(extractElectricTruck());
@@ -87,18 +87,18 @@ public class Main {
     }
 
     public static DieselTruck getLargestTruck() {
-        DieselTruck largest;
         if (dieselTrucks == null || dieselTrucks.length == 0) {
-            largest = new DieselTruck();
+            return null;
         }
 
-        else{ largest = dieselTrucks[0];
-            for (int i = 1; i < dieselTrucks.length; i++) {
-                if (dieselTrucks[i].getMaxCapacity() > largest.getMaxCapacity()) {
-                    largest = dieselTrucks[i];
-                }
+        DieselTruck largest = dieselTrucks[0];
+
+        for (int i = 1; i < dieselTrucks.length; i++) {
+            if (dieselTrucks[i].getMaxCapacity() > largest.getMaxCapacity()) {
+                largest = dieselTrucks[i];
             }
         }
+
         return largest;
     }
 
@@ -397,18 +397,18 @@ read.nextLine();
     private static ElectricTruck[] extractElectricTruck(){
         int count = 0;
 
-        // First, count how many ElectricCar instances exist
+
         for (Vehicle v : vm.getVehiclesManager()) {
             if (v instanceof ElectricCar) {
                 count++;
             }
         }
 
-        // Create an array of the correct size
+
         ElectricTruck[] electricTrucks = new ElectricTruck[count];
         int index = 0;
 
-        // Populate the new array
+
         for (Vehicle v : vm.getVehiclesManager()) {
             if (v instanceof ElectricCar && v != null) {
                 electricTrucks[index++] = (ElectricTruck) v;
