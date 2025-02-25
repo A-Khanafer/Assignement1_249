@@ -19,6 +19,7 @@ public class Car extends Vehicle {
 
     public Car(Car car){
         super(car);
+        this.leased = car.leased;
         maxPassengers= car.maxPassengers;
         this.plateNumber = car.plateNumber;
     }

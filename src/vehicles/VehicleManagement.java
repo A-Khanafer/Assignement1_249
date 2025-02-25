@@ -24,8 +24,8 @@ public class VehicleManagement {
 
     public void addVehicle(Vehicle vehicle) {
         boolean found = false;
-        for (int i = 0; i < vehiclesManager.length; i++) {
-            if (vehiclesManager[i]!=null && vehiclesManager[i].equals(vehicle)) {
+        for (Vehicle value : vehiclesManager) {
+            if (value != null && value.equals(vehicle)) {
                 found = true;
                 System.out.println("Vehicle already in Database.");
                 break;
@@ -36,10 +36,11 @@ public class VehicleManagement {
             for(int i = 0; i < vehiclesManager.length; i++) {
                 if(vehiclesManager[i]!=null)
                     temp[i] = vehicleTypeCreator(vehiclesManager[i]);
+                System.out.println(temp[i]);
             }
             temp[vehiclesManager.length] = vehicleTypeCreator(vehicle);
             vehiclesManager = temp;
-            System.out.println("Vehicle added");
+            System.out.println("Vehicle added..." + vehiclesManager[vehiclesManager.length -1]);
         }
     }
 
@@ -84,7 +85,7 @@ public class VehicleManagement {
     }
 
     public Vehicle[] getVehiclesManager() {
-        return new VehicleManagement(this).vehiclesManager;
+        return vehiclesManager;
     }
 
     public void setVehiclesManager(Vehicle[] vehiclesManager) {
@@ -100,13 +101,13 @@ public class VehicleManagement {
 
         for (Vehicle vehicle : vehiclesManager) {
             if (vehicle instanceof ElectricCar) {
-                electricCars += "  " + vehicle + "\n";
+                electricCars += "    " + vehicle + "\n";
             } else if (vehicle instanceof ElectricTruck) {
-                electricTruck += "  " + vehicle + "\n";
+                electricTruck += "   " + vehicle + "\n";
             } else if (vehicle instanceof DieselTruck) {
-                dieselTruck += "  " + vehicle + "\n";
+                dieselTruck += "     " + vehicle + "\n";
             } else if(vehicle instanceof Car){
-                car += "  " + vehicle + "\n";
+                car += "     " + vehicle + "\n";
             }
         }
         return electricCars + "\n" + electricTruck + "\n" + dieselTruck + "\n" + car;
@@ -275,7 +276,8 @@ public class VehicleManagement {
             case DieselTruck dieselTruck -> new DieselTruck(dieselTruck);
             case ElectricTruck electricTruck -> new ElectricTruck(electricTruck);
             case Car car -> new Car(car);
-            case null, default -> null;
+            case null -> null;
+            default -> throw new IllegalStateException("Unexpected value: " + vehicle);
         };
     }
 }

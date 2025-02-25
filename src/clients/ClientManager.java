@@ -111,7 +111,7 @@ public class ClientManager{
         }
         if (index>-1){
             for(Vehicle v : clientManager[index].getLeasingList().getLeasedVehiclesForAClient()){
-                v.setLeased(false);
+                v.returnVehicle();
             }
 
             Client[] temp = new Client[--clientCount];
@@ -168,8 +168,6 @@ public class ClientManager{
         } else System.out.println("Client {" + client + "} does not exist.");
     }
 
-
-
     public void showAllLeasedVehiclesByAClient(Client client){
         int index = -1;
         for (int i = 0; i < clientCount; i++) {
@@ -181,18 +179,15 @@ public class ClientManager{
         if (index > -1) {
             System.out.println(clientManager[index].showAllVehicles());
         } else{
-            System.out.println("Client {" + client + "} does not exist.");
+            System.out.println("Client {" + client.getName() + "} does not exist.");
         }
     }
 
     public void showAllLeasedVehicles(){
         for (int i = 0; i < clientCount; i++) {
-            System.out.println(clientManager[i].showAllVehicles());
+            System.out.println(clientManager[i].showAllVehicles()+ "\n");
         }
     }
-
-
-
 
     public void addLeasedVehicle(Client client , String plateNumber) {
         int index = -1;
@@ -206,8 +201,9 @@ public class ClientManager{
         if(index>-1){
             for(Vehicle v : vehicleData.getVehiclesManager()){
                 if(v.getPlateNumber().equals(plateNumber) && !v.isLeased()) {
-                    client.addVehicle(v);
-                    v.setLeased(true);
+                    v.leaseVehicle();
+                    clientManager[index].addVehicle(v);
+                    System.out.println(v.isLeased());
                     found = true;
                     break;
                 }
@@ -223,7 +219,6 @@ public class ClientManager{
         for (int i = 0; i < clientCount; i++) {
             if (clientManager[i]!=null && clientManager[i].equals(client)) {
                 index = i;
-
                 break;
             }
         }
@@ -232,7 +227,7 @@ public class ClientManager{
             for(Vehicle v : vehicleData.getVehiclesManager()){
                 if(v.getPlateNumber().equals(plateNumber) && v.isLeased()) {
                     clientManager[index].returnVehicle(v);
-                    v.setLeased(false);
+                    v.returnVehicle();
                     found = true;
                     break;
                 }
